@@ -3,11 +3,11 @@
   "displayName": "Business Model Architect",
   "intent": "create",
   "route": "full",
-  "mode": "interactive",
+  "mode": "auto",
   "ideationEnabled": true,
   "version": "1.0.0",
   "draftPath": ".claude/_forge/business-model-architect/",
-  "installedPath": null,
+  "installedPath": ".claude/skills/business-model-architect/",
   "librarySnapshotAt": "2026-07-01T12:47:51Z",
   "createdAt": "2026-07-01T12:47:51Z",
   "updatedAt": "2026-07-01T12:47:51Z",
@@ -20,21 +20,41 @@
     "externalDeps": [],
     "complexity": "complex"
   },
-  "summary": { "objective": [], "inPractice": [] },
-  "shape": { "decision": null, "targetPipeline": null, "subSkills": [], "rationale": "" },
+  "summary": {
+    "objective": [
+      "For: designing the business model for a brand-new / zero-to-one idea from scratch.",
+      "Fires when: user has a new/early idea with NO revenue model yet and asks how to make money / monetize / structure it. Redirects to business-model-enhancer when a model already exists.",
+      "Wedge: converges on ONE recommended model (who-pays / monetization / GTM / moat) via diverge->pre-mortem->converge, where the enhancer only stress-tests an EXISTING model.",
+      "Produces: a chat recommendation — one model + why it beats the alternatives + strongest runner-up & tradeoff + riskiest assumption + cheapest validation. Tight intake first; ambition (bootstrapped vs venture) steers the optimization."
+    ],
+    "inPractice": [
+      "Triggers on new/early ideas needing a business model — 'how do I make money from this?', 'what's the right revenue model for my idea?', 'turn this idea into a viable business'.",
+      "Checks the boundary first: if a revenue model already exists, redirects to business-model-enhancer instead of designing over it.",
+      "Runs a tight intake (who pays · problem · ambition · cost driver) before generating; never invents a market.",
+      "Diverges into 2-3 distinct model archetypes → pre-mortems each (lens steered by bootstrapped vs venture) → converges on ONE recommended model.",
+      "Outputs a decision: recommended model (who-pays/pricing/GTM/moat) + why it wins + runner-up & tradeoff + riskiest assumption + cheapest validation, with unverified inputs labeled.",
+      "Guards: no generic canvas dump, no invented market facts, no one-size ambition dogma."
+    ]
+  },
+  "shape": { "decision": "standalone", "targetPipeline": null, "subSkills": [], "rationale": "One coherent job/output; no host pipeline; kept as a sharp sibling of business-model-enhancer (cross-reference boundary, not a branch or a data handoff)." },
   "manifest": [],
   "uniqueWedge": "Unlike business-model-enhancer (which requires an existing model and only stress-tests additions), Business Model Architect designs the model for a brand-new idea from a blank slate — who-pays / monetization structure / GTM / moat — and converges on one recommended model with the runner-up, riskiest assumption, and cheapest validation.",
   "steps": [
     { "skill": "forge-1-extract", "status": "complete", "gate": "always", "runAt": "2026-07-01T12:47:51Z", "findings": { "category": "generator", "complexity": "complex" }, "annotations": ["[!OVERLAP] shares diverge->converge engine + business-model domain with business-model-enhancer; boundary is new-vs-existing model"] },
     { "skill": "forge-2-novelty", "status": "complete", "gate": "always", "runAt": "2026-07-01T12:50:00Z", "findings": { "collision": { "topNeighbors": [ {"slug": "business-model-enhancer", "score": 62}, {"slug": "expand-and-contract", "score": 24}, {"slug": "steelman", "score": 14} ], "maxScore": 62 }, "verdict": "DIFFERENTIATE" }, "annotations": ["[!OVERLAP] boundary: no-model-yet=Architect vs existing-model=Enhancer", "[!COLLISION] gray-zone monetization prompts — arena must confirm"] },
-    { "skill": "forge-3-grill", "status": "pending", "gate": "hard-proceed", "runAt": null, "findings": {}, "annotations": [] },
-    { "skill": "forge-3b-ideate", "status": "pending", "gate": "full-only", "runAt": null, "findings": {}, "annotations": [] },
-    { "skill": "forge-3c-shape", "status": "pending", "gate": "full-only", "runAt": null, "findings": {}, "annotations": [] },
-    { "skill": "forge-4-blueprint", "status": "pending", "gate": "always", "runAt": null, "findings": {}, "annotations": [] },
-    { "skill": "forge-5-build", "status": "pending", "gate": "always", "runAt": null, "findings": {}, "annotations": [] },
-    { "skill": "forge-6-verify", "status": "pending", "gate": "always", "runAt": null, "findings": {}, "annotations": [] }
+    { "skill": "forge-3-grill", "status": "complete", "gate": "hard-proceed:complexity-medium+", "runAt": "2026-07-01T12:55:00Z", "findings": { "resolved": ["converge-to-one", "tight-intake", "ambition-steers", "redirect-on-existing-model"] }, "annotations": [] },
+    { "skill": "forge-3b-ideate", "status": "complete", "gate": "full-only", "runAt": "2026-07-01T12:57:00Z", "findings": { "proposed": 12, "accepted": 0, "optInCandidates": ["A1", "A2", "A3", "C2", "C3", "C4"] }, "annotations": [] },
+    { "skill": "forge-3c-shape", "status": "complete", "gate": "full-only", "runAt": "2026-07-01T12:59:00Z", "findings": { "decision": "standalone" }, "annotations": [] },
+    { "skill": "forge-4-blueprint", "status": "complete", "gate": "always", "runAt": "2026-07-01T13:01:00Z", "findings": { "sections": 6, "goldenExamples": 3, "assets": "none" }, "annotations": [] },
+    { "skill": "forge-5-build", "status": "complete", "gate": "always", "runAt": "2026-07-01T13:03:00Z", "findings": { "draftSkill": "draft/SKILL.md", "goldenExamples": 3, "deviations": "none" }, "annotations": [] },
+    { "skill": "forge-6-verify", "status": "complete", "gate": "always", "runAt": "2026-07-01T13:05:00Z", "findings": { "arena": { "precision": 1.0, "recall": 1.0, "f1": 1.0, "misfires": [] }, "goldenExamples": { "passed": 3, "total": 3 }, "verdict": "PASS" }, "annotations": ["[!COLLISION]-RESOLVED — boundary holds in arena + enforced by Workflow step 1", "[!OVERLAP]-RESOLVED"] }
   ],
-  "decisions": [],
+  "decisions": [
+    { "id": "D1", "step": "forge-3-grill", "decision": "Output = converge to ONE recommended model (diverge->pre-mortem->commit)", "chosen": "converge-to-one", "provenance": "user", "rationale": "User picked decision-engine over menu/canvas; keeps it out of [!GENERIC].", "affects": ["blueprint.md", "consumed-by: build, verify"], "superseded": false },
+    { "id": "D2", "step": "forge-3-grill", "decision": "Thin input -> tight intake first (max ~5, gaps only); never invent a market", "chosen": "tight-intake", "provenance": "user", "rationale": "Guards the top failure mode (hallucinated market).", "affects": ["blueprint.md", "consumed-by: build, verify"], "superseded": false },
+    { "id": "D3", "step": "forge-3-grill", "decision": "Ambition (bootstrapped vs venture) is a first-class intake dimension that steers the model + pre-mortem lens", "chosen": "ask-ambition-then-steer", "provenance": "default", "rationale": "Recommended option; user switched to auto before answering. Flippable at final gate.", "affects": ["blueprint.md", "consumed-by: build, verify"], "superseded": false },
+    { "id": "D4", "step": "forge-3-grill", "decision": "Boundary vs business-model-enhancer: redirect when a revenue model already exists", "chosen": "redirect-on-existing-model", "provenance": "default", "rationale": "Resolves the [!COLLISION]/[!OVERLAP] flag from novelty.", "affects": ["blueprint.md", "consumed-by: build, verify"], "superseded": false }
+  ],
   "blockers": [],
   "escalated": false
 }

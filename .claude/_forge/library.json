@@ -1,9 +1,31 @@
 {
-  "generatedAt": "2026-07-01T12:47:21.927061+00:00",
+  "generatedAt": "2026-07-01T13:17:39.436347+00:00",
   "skillsDir": "C:\\Users\\darre\\Documents\\repos\\claude\\.claude\\skills",
-  "count": 10,
-  "unversioned": [],
+  "count": 18,
+  "unversioned": [
+    "excalidraw-diagram-generator",
+    "expand-and-contract",
+    "infographic-builder",
+    "promptimizer",
+    "skills-sh-finder",
+    "steelman",
+    "swarm-consensus"
+  ],
   "skills": [
+    {
+      "slug": "business-model-architect",
+      "name": "business-model-architect",
+      "description": "Design the business model for a brand-new / zero-to-one idea from scratch \u2014 decide who pays, the monetization & pricing shape, the go-to-market motion, and the moat, then converge on ONE recommended model with the strongest runner-up, the riskiest assumption, and the cheapest way to validate it. Trigger when the user says \"help me figure out the business model for my idea\", \"how would I make money from this?\", \"I have an idea for an app \u2014 what's the best way to monetize it?\", \"what's the right revenue model for this?\", or \"turn this idea into a viable business \u2014 how should it actually work?\". Runs a tight intake first when the idea is thin; never invents a market. Do NOT use when a business/revenue model already exists and you want to add to or stress-test it (use `business-model-enhancer`), nor for financial modeling / projections, business-plan or pitch-deck writing, standalone market sizing, or building / naming the product.",
+      "version": "1.0.0",
+      "category": null,
+      "handoffs_to": [],
+      "expects_from": [],
+      "is_forge_internal": false,
+      "has_scripts": false,
+      "has_references": true,
+      "looks_like_pipeline": false,
+      "integration_excerpt": ""
+    },
     {
       "slug": "business-model-enhancer",
       "name": "business-model-enhancer",
@@ -16,6 +38,34 @@
       "has_scripts": false,
       "has_references": true,
       "looks_like_pipeline": false,
+      "integration_excerpt": ""
+    },
+    {
+      "slug": "excalidraw-diagram-generator",
+      "name": "excalidraw-diagram-generator",
+      "description": "Generate real, editable Excalidraw diagrams \u2014 flowcharts, system architectures, mind maps, sequence diagrams, ERDs, and slide decks \u2014 as .excalidraw files the user can drag into excalidraw.com (or via the Excalidraw+ MCP when connected). Trigger generously, even when the user doesn't say \"Excalidraw\": \"draw a diagram\", \"make a flowchart\", \"visualize this\", \"map this out\", \"sketch this\", \"make me slides\", \"show how X connects to Y\", or any request where a visual communicates better than prose. Prefer this over ASCII art, Markdown lists, or punting on the visual.",
+      "version": null,
+      "category": null,
+      "handoffs_to": [],
+      "expects_from": [],
+      "is_forge_internal": false,
+      "has_scripts": true,
+      "has_references": true,
+      "looks_like_pipeline": false,
+      "integration_excerpt": ""
+    },
+    {
+      "slug": "expand-and-contract",
+      "name": "expand-and-contract",
+      "description": "Help the user decide what's in scope for an idea by aggressively expanding it into every possible thing it COULD include, then sorting each item into one of four scope buckets (Core / Nice-to-have / Maybe-later / Out). Use this skill whenever the user is trying to figure out the boundaries of an idea \u2014 what's in, what's out, what's parked for later. Trigger on phrases like \"what's in scope\", \"help me scope this\", \"decide what's in or out\", \"narrow this down\", \"what should this include\", \"expand and contract\", \"make this concrete\", or any time the user has a seed idea and seems unsure how big or small to make it. Use this skill even when the user doesn't say \"scope\" explicitly \u2014 whenever they bring a half-formed idea and the real question is \"how big should this be?\", this is the right tool. Do NOT use for fully-formed, concrete tasks where the scope is already settled (e.g., \"write me a YouTube script for episode 1\").",
+      "version": null,
+      "category": null,
+      "handoffs_to": [],
+      "expects_from": [],
+      "is_forge_internal": false,
+      "has_scripts": false,
+      "has_references": false,
+      "looks_like_pipeline": true,
       "integration_excerpt": ""
     },
     {
@@ -131,6 +181,34 @@
       "integration_excerpt": "- Reads: `draft/SKILL.md` (+ assets + `references/examples/`), `forge.json`, `novelty.md`, the library\n  model (`.claude/_forge/library.json`), and (revise) the prior version snapshot in `versions/<oldver>/`.\n- Writes: `.claude/_forge/<slug>/verify.md`; updates `forge.json` with the verdict + `findings.arena`,\n  `findings.goldenExamples`.\n- Next: back to `skill-forge` \u2192 the install gate (promote `draft/` \u2192 `.claude/skills/<slug>/` on approval),\n  then a short introduction of the new skill (triggers + 2-3 first prompts to try)."
     },
     {
+      "slug": "infographic-builder",
+      "name": "infographic-builder",
+      "description": "Build a single-file, self-contained HTML infographic from text content, data, or article material. Use this skill whenever the user asks for an infographic, visual summary, social graphic, one-pager, lead magnet, visual explainer, or wants to \"visualize\", \"turn into a graphic\", or \"make a shareable visual\" out of text or data. Also trigger for Instagram/social post graphics, Notion-embeddable visuals, deck-ready visual slides, educational hand-outs, and interactive HTML visuals for web/Notion. Asks 3-4 clarifying questions upfront (destination, aesthetic, brand colors, interactivity) unless the prompt makes all of them obvious. Selects the right infographic type (process, stats, comparison, timeline, hierarchy, cycle, listicle, anatomy) and aesthetic preset based on the content and intended use, and supports brand color overrides.",
+      "version": null,
+      "category": null,
+      "handoffs_to": [],
+      "expects_from": [],
+      "is_forge_internal": false,
+      "has_scripts": false,
+      "has_references": true,
+      "looks_like_pipeline": false,
+      "integration_excerpt": ""
+    },
+    {
+      "slug": "promptimizer",
+      "name": "promptimizer",
+      "description": "Optimize, improve, or write prompts for any LLM (Claude, GPT, Gemini, image generators, etc.). Use this skill whenever the user wants help with a prompt \u2014 including writing one from scratch, improving an existing draft, rewriting a system prompt, crafting an image generation prompt, or designing agent instructions. Trigger on phrases like \"help me write a prompt\", \"optimize this prompt\", \"make this prompt better\", \"rewrite this for [model]\", \"how should I ask [LLM] to...\", or any time the user describes a goal and seems to be trying to formulate a prompt \u2014 even if they don't use the word \"prompt\". The skill clarifies length and any genuinely unclear constraints first, then writes a polished, copy-paste-ready prompt.",
+      "version": null,
+      "category": null,
+      "handoffs_to": [],
+      "expects_from": [],
+      "is_forge_internal": false,
+      "has_scripts": false,
+      "has_references": false,
+      "looks_like_pipeline": false,
+      "integration_excerpt": ""
+    },
+    {
       "slug": "skill-forge",
       "name": "skill-forge",
       "description": "Orchestrate the robust, multi-stage pipeline that turns a rough skill idea into a finished, genuinely unique and useful Claude Skill \u2014 and safely revise skills that already exist. This is the heavy-duty cousin of `01-stepify` (which is a quick one-shot): use skill-forge when an idea deserves real extraction, a novelty/dedup check, interrogation, a design blueprint, careful authoring, and adversarial verification before it goes live. Trigger when the user says things like \"forge a skill\", \"skill-forge\", \"build me a new skill for X\", \"I have an idea for a skill\", \"run the skill pipeline\", \"turn this idea into a skill properly\", \"new skill from scratch\", or \u2014 for the revise path \u2014 \"update/upgrade/version this skill\", \"revise an existing skill\", \"add a capability to <skill>\". This skill is the ROUTER and STATE-KEEPER: it builds a model of the existing skill library, decides which forge stages to run or skip, tracks progress in a per-skill `forge.json`, runs the pipeline interactively (gate between stages) or in auto mode (hands-off with a final review gate), and owns the install gate that promotes a verified draft into the live `.claude/skills/` directory. Do NOT use for a quick checklist/SOP/one-step skill (use `01-stepify`).",
@@ -143,6 +221,48 @@
       "has_references": false,
       "looks_like_pipeline": true,
       "integration_excerpt": "- Upstream: a raw idea, a `01-stepify` output the user decided deserves the full treatment, or an existing\n  skill to revise.\n- Substrate: `scripts/library_index.py` \u2192 `library.json` + `INDEX.md`, refreshed at intake, updated at install.\n- Each stage reads `forge.json` + the library model + the prior stage's artifact and writes its own; this\n  orchestrator owns routing, the ledger, versioning, and the install + composition gates.\n- Downstream: a live, versioned skill in `.claude/skills/<slug>/` (+ `CHANGELOG.md`), the updated library\n  model, and a short introduction (triggers + first prompts)"
+    },
+    {
+      "slug": "skills-sh-finder",
+      "name": "skills-sh-finder",
+      "description": "Search skills.sh (the open Agent Skills directory) for existing community-built skills that match what the user is trying to do, then suggest the best matches with a one-line summary and a copy-paste install command. Use this PROACTIVELY at the start of any non-trivial task \u2014 building an integration, working with a specific framework/SaaS/API, automating a workflow, doing creative or design work, or anything the user might want to repeat later \u2014 so they don't accidentally reinvent something that already exists. Also use ON-DEMAND whenever the user mentions skills.sh, says things like \"is there a skill for this,\" \"find me a skill,\" \"anything pre-built for X,\" \"search skills.sh,\" or asks whether a community skill exists. Cast a wide net \u2014 surface anything plausibly related, not just exact matches. Do not trigger for trivial one-shot questions (e.g. \"what's 2+2,\" \"summarize this email\") where a skill would never apply.",
+      "version": null,
+      "category": null,
+      "handoffs_to": [],
+      "expects_from": [],
+      "is_forge_internal": false,
+      "has_scripts": false,
+      "has_references": false,
+      "looks_like_pipeline": false,
+      "integration_excerpt": ""
+    },
+    {
+      "slug": "steelman",
+      "name": "steelman",
+      "description": "Stress-test the user's position by finding the strongest possible counter-arguments \u2014 the ones an informed, fair-minded critic would actually make \u2014 and then judging which objections survive scrutiny, which break the position, and how to respond. Use this skill whenever the user explicitly asks to \"steelman,\" \"stress test,\" \"red team,\" \"poke holes in,\" \"argue against,\" or \"find the best case against\" their idea, position, plan, or decision. Also use it when the user is clearly weighing a real decision or commitment with non-trivial stakes \u2014 career moves, major purchases, business strategy, public positions, hiring, big bets \u2014 even if they don't use the word \"steelman,\" because the point of the skill is to surface the failure modes they can't see from inside their own position. Don't trigger on casual opinions, hypotheticals, or venting.",
+      "version": null,
+      "category": null,
+      "handoffs_to": [],
+      "expects_from": [],
+      "is_forge_internal": false,
+      "has_scripts": false,
+      "has_references": false,
+      "looks_like_pipeline": false,
+      "integration_excerpt": ""
+    },
+    {
+      "slug": "swarm-consensus",
+      "name": "swarm-consensus",
+      "description": "Query multiple AI models in parallel via OpenRouter and synthesize their responses into one answer with disagreement notes. Use this skill whenever the user wants to \"swarm\" a question, get a \"consensus\" or \"second opinion\" from multiple AIs, cross-check an answer against other models, validate an important decision, or pressure-test code, research, or creative work with diverse model perspectives. Trigger on phrases like \"swarm this,\" \"consensus,\" \"ask multiple models,\" \"what do other AIs think,\" \"cross-check,\" \"second opinion from other models,\" or any request to broaden a single-model answer into a multi-model verdict \u2014 even when the user doesn't explicitly say \"swarm.\" Especially useful for high-stakes decisions, factual claims worth verifying, code reviews, and creative brainstorming where breadth of perspective matters.",
+      "version": null,
+      "category": null,
+      "handoffs_to": [],
+      "expects_from": [],
+      "is_forge_internal": false,
+      "has_scripts": true,
+      "has_references": true,
+      "looks_like_pipeline": false,
+      "integration_excerpt": ""
     }
   ]
 }
