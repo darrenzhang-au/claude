@@ -1,0 +1,40 @@
+{
+  "skillSlug": "business-model-architect",
+  "displayName": "Business Model Architect",
+  "intent": "create",
+  "route": "full",
+  "mode": "interactive",
+  "ideationEnabled": true,
+  "version": "1.0.0",
+  "draftPath": ".claude/_forge/business-model-architect/",
+  "installedPath": null,
+  "librarySnapshotAt": "2026-07-01T12:47:51Z",
+  "createdAt": "2026-07-01T12:47:51Z",
+  "updatedAt": "2026-07-01T12:47:51Z",
+  "skillProfile": {
+    "category": "generator",
+    "invocation": "on-demand",
+    "producesArtifact": true,
+    "needsScripts": false,
+    "needsReferences": false,
+    "externalDeps": [],
+    "complexity": "complex"
+  },
+  "summary": { "objective": [], "inPractice": [] },
+  "shape": { "decision": null, "targetPipeline": null, "subSkills": [], "rationale": "" },
+  "manifest": [],
+  "uniqueWedge": "Unlike business-model-enhancer (which requires an existing model and only stress-tests additions), Business Model Architect designs the model for a brand-new idea from a blank slate — who-pays / monetization structure / GTM / moat — and converges on one recommended model with the runner-up, riskiest assumption, and cheapest validation.",
+  "steps": [
+    { "skill": "forge-1-extract", "status": "complete", "gate": "always", "runAt": "2026-07-01T12:47:51Z", "findings": { "category": "generator", "complexity": "complex" }, "annotations": ["[!OVERLAP] shares diverge->converge engine + business-model domain with business-model-enhancer; boundary is new-vs-existing model"] },
+    { "skill": "forge-2-novelty", "status": "complete", "gate": "always", "runAt": "2026-07-01T12:50:00Z", "findings": { "collision": { "topNeighbors": [ {"slug": "business-model-enhancer", "score": 62}, {"slug": "expand-and-contract", "score": 24}, {"slug": "steelman", "score": 14} ], "maxScore": 62 }, "verdict": "DIFFERENTIATE" }, "annotations": ["[!OVERLAP] boundary: no-model-yet=Architect vs existing-model=Enhancer", "[!COLLISION] gray-zone monetization prompts — arena must confirm"] },
+    { "skill": "forge-3-grill", "status": "pending", "gate": "hard-proceed", "runAt": null, "findings": {}, "annotations": [] },
+    { "skill": "forge-3b-ideate", "status": "pending", "gate": "full-only", "runAt": null, "findings": {}, "annotations": [] },
+    { "skill": "forge-3c-shape", "status": "pending", "gate": "full-only", "runAt": null, "findings": {}, "annotations": [] },
+    { "skill": "forge-4-blueprint", "status": "pending", "gate": "always", "runAt": null, "findings": {}, "annotations": [] },
+    { "skill": "forge-5-build", "status": "pending", "gate": "always", "runAt": null, "findings": {}, "annotations": [] },
+    { "skill": "forge-6-verify", "status": "pending", "gate": "always", "runAt": null, "findings": {}, "annotations": [] }
+  ],
+  "decisions": [],
+  "blockers": [],
+  "escalated": false
+}

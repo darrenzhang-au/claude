@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(claude-api)",
+      "WebSearch",
+      "Bash(mkdir -p \"c:/Users/darre/Documents/repos/claude/Repkin/src/components\" && echo created)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(python .claude/skills/skill-forge/scripts/library_index.py)",
+      "Bash(PYTHONIOENCODING=utf-8 PYTHONUTF8=1 python .claude/skills/skill-forge/scripts/library_index.py)",
+      "Bash(mkdir -p .claude/skills/business-model-enhancer)",
+      "Bash(cp -r .claude/_forge/business-model-enhancer/draft/. .claude/skills/business-model-enhancer/)",
+      "Read(//claude/**)",
+      "Read(//c/claude/**)",
+      "Skill(update-config)",
+      "WebFetch(domain:github.com)",
+      "Bash(openssl version *)",
+      "Bash(python -m pip show flask)",
+      "PowerShell(python -m pip install flask --quiet; python -c \"import flask; print\\('flask', flask.__version__\\)\")",
+      "Bash(ngrok config *)",
+      "Bash(ngrok http *)",
+      "Bash(curl -fsS http://127.0.0.1:4040/api/tunnels)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); [print\\(t['public_url'],'->',t['config']['addr']\\) for t in d['tunnels']]\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); [print\\('TUNNEL UP:',t['public_url'],'->',t['config']['addr']\\) for t in d['tunnels']]\")",
+      "Bash(python *)",
+      "Bash(curl -fsS http://127.0.0.1:8080/.well-known/appspecific/com.tesla.3p.public-key.pem)",
+      "Bash(curl -fsS https://unreproved-dusty-seelily.ngrok-free.dev/.well-known/appspecific/com.tesla.3p.public-key.pem)",
+      "PowerShell(npm link *)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "PowerShell(New-Item *)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\darre\\Documents\\repos\\claude\\Repkin\\src"
+    ]
+  }
+}

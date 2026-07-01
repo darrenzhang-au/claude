@@ -1,0 +1,79 @@
+{
+  "skillSlug": "business-model-enhancer",
+  "displayName": "Business Model Enhancer",
+  "intent": "create",
+  "route": "full",
+  "mode": "auto-from-shape",
+  "ideationEnabled": true,
+  "version": "1.0.0",
+  "draftPath": ".claude/_forge/business-model-enhancer/",
+  "installedPath": ".claude/skills/business-model-enhancer/",
+  "librarySnapshotAt": "2026-07-01T03:45:26Z",
+  "createdAt": "2026-07-01T04:08:00Z",
+  "updatedAt": "2026-07-01T04:08:00Z",
+  "skillProfile": {
+    "category": "generator",
+    "invocation": "on-demand",
+    "producesArtifact": true,
+    "needsScripts": false,
+    "needsReferences": true,
+    "assetPaths": ["draft/references/strategic-lenses.md", "draft/references/examples/ (3)"],
+    "externalDeps": [],
+    "complexity": "medium"
+  },
+  "summary": {
+    "objective": [
+      "Stress-test/enhance an EXISTING business model and return a decided recommendation",
+      "Fires for a specific idea to test OR a goal wanting candidates; not zero-to-one",
+      "Wedge: diverge-by-lens -> independent per-candidate pre-mortem -> scored convergence, anchored to real economics",
+      "Produces: model snapshot -> candidate per lens -> pre-mortem -> scored table -> one recommendation (+runner-up, flip-assumptions, first-test, devil's-advocate)"
+    ],
+    "inPractice": [
+      "Fires on improve/enhance/stress-test an existing business model or product; quiet for zero-to-one, financial modeling, plan/deck writing, generic brainstorming",
+      "Detect evaluate-vs-generate -> tight intake -> anchor snapshot -> one candidate per lens -> independent pre-mortem each -> scored table -> one recommendation",
+      "Recommendation includes runner-up tradeoff, devil's-advocate, flip-assumptions, cheapest first-test",
+      "Guards: refuse zero-to-one, rewrite un-anchored candidates, mark lenses N/A, no invented financials, always a decision"
+    ]
+  },
+  "shape": { "decision": "standalone", "targetPipeline": null, "subSkills": [], "rationale": "Single coherent single-output generator; no host pipeline; C pipeline-test fails. Ships one references asset." },
+  "manifest": [
+    { "item": "diverge → stress-test → converge loop, anchored to the existing model", "status": "todo", "note": "core process" },
+    { "item": "divergence engine forces genuinely different suggestions", "status": "todo", "note": "top failure risk" },
+    { "item": "every suggestion paired with concrete issues/risks", "status": "todo", "note": "" },
+    { "item": "convergence rule that picks/synthesizes one recommended solution", "status": "todo", "note": "" },
+    { "item": "context-intake behavior when the business model isn't supplied", "status": "todo", "note": "confirmed in grill: tight intake first" },
+    { "item": "recommendation states flip-assumptions (what would change my mind)", "status": "todo", "note": "A1" },
+    { "item": "recommendation ends with a cheapest-validation first-test step", "status": "todo", "note": "A4" },
+    { "item": "anchor-integrity self-check rewrites generic/un-anchored candidates", "status": "todo", "note": "B1" },
+    { "item": "zero-to-one input detected and gracefully declined + redirected", "status": "todo", "note": "B2" },
+    { "item": "non-applicable lenses marked N/A with a reason (not forced)", "status": "todo", "note": "B3" },
+    { "item": "scored candidate table (upside·effort·risk·fit) precedes the pick", "status": "todo", "note": "C1" },
+    { "item": "devil's-advocate pre-mortem runs on the winner before recommending", "status": "todo", "note": "C4" }
+  ],
+  "uniqueWedge": "Encodes a repeatable diverge → independent-per-candidate pre-mortem → scored convergence method anchored to the user's EXISTING model's economics — forcing genuinely distinct options, an unanchored risk pass on each, and one synthesized recommendation, where a naive prompt gives near-duplicate ideas, soft critique, and a flat list.",
+  "steps": [
+    { "skill": "forge-1-extract", "status": "complete", "gate": "always", "runAt": "2026-07-01T04:10:00Z", "findings": { "category": "generator", "complexity": "medium" }, "annotations": [] },
+    { "skill": "forge-2-novelty", "status": "complete", "gate": "always", "runAt": "2026-07-01T04:14:00Z", "findings": { "collision": { "topNeighbors": [{"slug": "forge-3b-ideate", "score": 8}, {"slug": "forge-3-grill", "score": 6}], "maxScore": 8 }, "verdict": "DIFFERENTIATE" }, "annotations": ["[!OVERLAP] vs generic AI-stress-test ecosystem pattern; must encode 4 structural commitments to avoid [!GENERIC]"] },
+    { "skill": "forge-3-grill", "status": "complete", "gate": "hard-proceed:medium-complexity+open-questions", "runAt": "2026-07-01T04:20:00Z", "findings": { "goldenScenarios": 3, "needsReference": "strategic-lens-set" }, "annotations": [] },
+    { "skill": "forge-3b-ideate", "status": "complete", "gate": "full-only", "runAt": "2026-07-01T04:26:00Z", "findings": { "accepted": ["A1","A4","B1","B2","B3","C1","C4"], "rejected": ["A2","A3","B4","C2","C3"] }, "annotations": [] },
+    { "skill": "forge-3c-shape", "status": "complete", "gate": "full-only", "runAt": "2026-07-01T04:30:00Z", "findings": { "decision": "standalone" }, "annotations": [] },
+    { "skill": "forge-4-blueprint", "status": "complete", "gate": "always", "runAt": "2026-07-01T04:34:00Z", "findings": { "sections": 6, "asset": "references/strategic-lenses.md", "goldenExamplesPlanned": 3 }, "annotations": [] },
+    { "skill": "forge-5-build", "status": "complete", "gate": "always", "runAt": "2026-07-01T04:40:00Z", "findings": { "files": 5, "goldenExamples": 3, "deviations": "none" }, "annotations": ["all manifest items authored except Verify-owned: golden replay + arena + convention check"] },
+    { "skill": "forge-6-verify", "status": "complete", "gate": "always", "runAt": "2026-07-01T04:46:00Z", "findings": { "arena": { "precision": 1.0, "recall": 1.0, "f1": 1.0, "misfires": [] }, "goldenExamples": { "passed": 3, "total": 3 }, "verdict": "PASS" }, "annotations": ["[!OVERLAP-RESOLVED] description+workflow stay in enhance-existing-model lane"] }
+  ],
+  "decisions": [
+    { "id": "D1", "step": "forge-3-grill", "decision": "Support both generate and evaluate via a detected top-level branch", "chosen": "both-adaptive", "provenance": "user", "rationale": "User: arrives with either a specific idea or just a goal", "affects": ["blueprint.md", "build"], "superseded": false },
+    { "id": "D2", "step": "forge-3-grill", "decision": "Run a tight 3-5 question intake before diverging when model context is thin", "chosen": "intake-first", "provenance": "user", "rationale": "Guarantees anchored output; skip questions already answered", "affects": ["blueprint.md", "build"], "superseded": false },
+    { "id": "D3", "step": "forge-3-grill", "decision": "Converge to one recommendation plus a 'why over the runner-up' tradeoff", "chosen": "one-pick+runner-up", "provenance": "user", "rationale": "Decisive but transparent", "affects": ["blueprint.md", "build", "golden-examples"], "superseded": false },
+    { "id": "D4", "step": "forge-3-grill", "decision": "Force divergence via a fixed set of distinct strategic lenses (one candidate per lens)", "chosen": "strategic-lenses", "provenance": "user", "rationale": "Structurally guarantees variety; ships as a reference asset", "affects": ["blueprint.md", "build", "references/lenses"], "superseded": false },
+    { "id": "D5", "step": "forge-3b-ideate", "decision": "A1 flip-assumptions line on the recommendation", "chosen": "accept", "provenance": "user", "rationale": "strengthens decision quality", "affects": ["blueprint.md", "build"], "superseded": false },
+    { "id": "D6", "step": "forge-3b-ideate", "decision": "A4 cheapest-validation first-test on the winner", "chosen": "accept", "provenance": "user", "rationale": "de-risks before build", "affects": ["blueprint.md", "build"], "superseded": false },
+    { "id": "D7", "step": "forge-3b-ideate", "decision": "B1 anchor-integrity self-check", "chosen": "accept", "provenance": "user", "rationale": "enforces novelty commitment #1", "affects": ["blueprint.md", "build"], "superseded": false },
+    { "id": "D8", "step": "forge-3b-ideate", "decision": "B2 zero-to-one refusal guard", "chosen": "accept", "provenance": "user", "rationale": "enforces exclusion", "affects": ["blueprint.md", "build"], "superseded": false },
+    { "id": "D9", "step": "forge-3b-ideate", "decision": "B3 lens-not-applicable handling", "chosen": "accept", "provenance": "user", "rationale": "avoids forced weak candidates", "affects": ["blueprint.md", "build", "references/lenses"], "superseded": false },
+    { "id": "D10", "step": "forge-3b-ideate", "decision": "C1 scored candidate table before the pick", "chosen": "accept", "provenance": "user", "rationale": "convergence visibly earned", "affects": ["blueprint.md", "build"], "superseded": false },
+    { "id": "D11", "step": "forge-3b-ideate", "decision": "C4 devil's-advocate pre-mortem on the winner", "chosen": "accept", "provenance": "user", "rationale": "counters optimism bias", "affects": ["blueprint.md", "build"], "superseded": false }
+  ],
+  "blockers": [],
+  "escalated": false
+}
