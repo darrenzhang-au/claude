@@ -1,0 +1,5 @@
+# Only Claude files (.claude/) and skills (Skills/) are tracked.
+# Ignore everything else.
+/Repkin/
+/tesla-fleet-api/
+/tesla-mcp-server/
