@@ -1,0 +1,52 @@
+{
+  "skill_name": "excalidraw-diagram-generator",
+  "evals": [
+    {
+      "id": 1,
+      "name": "flowchart-with-decision-branch",
+      "prompt": "make me a flowchart for the signup flow on listingview — user enters email + password, we send a verification email, they click the link, account activates. Also show what happens if the verification link expires (we let them request a new one).",
+      "expected_output": "Excalidraw scene JSON (Mode B) showing a vertical flowchart with a Start node, signup step, send-verification step, a decision diamond ('Link still valid?' or similar), branching to either 'Account activated' (success path) or 'Request new link' → loops back. Arrows must be bound via startBinding/endBinding, decision diamond should have yes/no branch labels as small text near the arrows. Happy-path arrows can use one accent color.",
+      "files": [],
+      "assertions": [
+        {"text": "Output is valid Excalidraw scene JSON with type='excalidraw' wrapper"},
+        {"text": "Includes at least one diamond element used for the expiry decision (not a rectangle)"},
+        {"text": "Every arrow has both startBinding and endBinding set to real element IDs"},
+        {"text": "Shape labels are bound via containerId, not floating standalone text"},
+        {"text": "Layout flows top-to-bottom (later steps have higher y values than earlier ones)"},
+        {"text": "No two nodes have overlapping bounding boxes"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "saas-architecture-with-tiers",
+      "prompt": "draw the listingview architecture: nextjs frontend on vercel, node/express api on aws, postgres on aws, the chrome extension that injects on etsy.com, and the framer marketing site at listingview.io. show how they connect — like the extension talks to the api, the api talks to postgres, the marketing site is standalone but points to the app. group by tier if it helps.",
+      "expected_output": "Excalidraw scene JSON showing the 5 components, organized either by tier (frontend / API / data) using frame elements as containers, or by deployment provider. Arrows show meaningful connections only (not every-to-every). Each component is a labeled rectangle. The Chrome extension is visually distinct (e.g., dashed border or different stroke color) since it lives in a different environment. The marketing site is shown as a separate cluster.",
+      "files": [],
+      "assertions": [
+        {"text": "Output is valid Excalidraw scene JSON with type='excalidraw' wrapper"},
+        {"text": "Contains at least one frame element used to group components by tier or environment"},
+        {"text": "All 5 named components appear as labeled shapes (Next.js frontend, Express API, Postgres, Chrome extension, Framer site)"},
+        {"text": "Connecting arrows are bound to elements (not floating coordinates)"},
+        {"text": "Not every component connects to every other component — connections are selective"},
+        {"text": "Components within the same frame have matching frameId values"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "slide-deck-presentation",
+      "prompt": "i'm putting together a quick pitch deck for a youtube sponsorship — 4 slides max: 1) intro (who i am + what listingview does), 2) audience (etsy sellers, ~X reach), 3) the ask (sponsorship slots, rate), 4) thanks/next steps. make it as an excalidraw deck so i can edit it.",
+      "expected_output": "Excalidraw scene JSON with exactly 4 frame elements arranged left-to-right at 854x480 each, ~350px gaps. Each frame contains a title (standalone text, larger font) and body content (text bullets or small rectangles). Every element inside a frame has frameId pointing to that frame. Slide titles match the 4 requested topics. No multi-line text crammed inside circles.",
+      "files": [],
+      "assertions": [
+        {"text": "Output is valid Excalidraw scene JSON with type='excalidraw' wrapper"},
+        {"text": "Contains exactly 4 frame elements"},
+        {"text": "Every frame has width=854 and height=480"},
+        {"text": "Frames are arranged left-to-right (each frame's x is greater than the previous)"},
+        {"text": "Gap between consecutive frames is approximately 350px"},
+        {"text": "Every non-frame element has a frameId pointing to one of the 4 frames"},
+        {"text": "Slide titles are standalone text elements (not bound labels)"},
+        {"text": "Frame roughness is 0 (clean slide edges, not hand-drawn)"}
+      ]
+    }
+  ]
+}
