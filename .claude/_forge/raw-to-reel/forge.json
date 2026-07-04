@@ -1,0 +1,75 @@
+{
+  "skillSlug": "raw-to-reel",
+  "displayName": "Raw to Reel",
+  "intent": "create",
+  "route": "full",
+  "mode": "auto",
+  "ideationEnabled": true,
+  "version": "1.0.0",
+  "draftPath": ".claude/_forge/raw-to-reel/",
+  "installedPath": ".claude/skills/raw-to-reel/",
+  "librarySnapshotAt": "2026-07-03T06:48:01Z",
+  "createdAt": "2026-07-03T06:55:06Z",
+  "updatedAt": "2026-07-03T08:10:00Z",
+  "skillProfile": {
+    "category": "automation",
+    "invocation": "on-demand",
+    "producesArtifact": true,
+    "needsScripts": true,
+    "needsReferences": true,
+    "externalDeps": ["ffmpeg/ffprobe", "whisper-family transcriber (faster-whisper preferred)", "python3"],
+    "complexity": "complex"
+  },
+  "summary": { "objective": [
+    "For: turning one raw talking-to-camera clip into a post-ready ≤60s short-form edit for socials.",
+    "Fires when: user hands over raw talking-head footage asking to remove mistakes/awkwardness or 'make this a reel'. NOT for long-form, no-speech, multi-cam/b-roll, or in-Vyra editing sessions.",
+    "Wedge: editorial (not mechanical) cutting — retakes/flubs judged from the transcript (keep last complete take), coherence-gated tightening to ≤60s, conservative hook pass — ending in a Premiere Pro 2022-importable deliverable, not a roughcut.",
+    "Produces: <clip>-edit/ folder — sequence.xml (FCP7 XML, 9:16 @ source fps, all cuts applied, non-destructive), captions.srt (short cues, re-timed), edit-report.md (every cut: timecode + reason-class; kept transcript; final runtime)."
+  ], "inPractice": [
+    "Triggers on raw talking-head footage + a make-it-postable ask: 'clean up this raw video for socials', 'turn this raw take into a reel', 'edit out my bad takes', 'get this down to 60s for TikTok'.",
+    "Stays quiet on: long-form/podcast silence-stripping (redirects to auto-editor-class tools), no-speech video, interviews/multi-cam/b-roll, repurposing finished long videos, in-Vyra sessions, caption-only asks.",
+    "Preflights deps (ffprobe, faster-whisper), transcribes word-level, states the core message, then cuts by reason-class: mistakes (keep LAST complete take), false starts, filler, dead air.",
+    "Coherence gate before anything is generated; >60s → fixed time-ladder (redundancy → tangent → weakest support), core message never cut; hook pass prefers cutting preamble over reordering.",
+    "Delivers <clip>-edit/: sequence.xml (FCP7 XML, 1080×1920 @ source fps, self-checked), captions.srt (re-timed), edit-report.md (every cut: timecode + reason + ⚠ flags), cutlist.json.",
+    "Guards: never cuts mid-word or anything it can't read confidently; non-destructive (never touches the source, never renders); user prefs override all defaults."
+  ] },
+  "shape": { "decision": "standalone", "targetPipeline": null, "subSkills": [], "rationale": "One artifact chain in one sitting; no pipeline to join; XML emitter is a script asset, not a sibling skill." },
+  "manifest": [
+    { "item": "FCP7 XML generator script (frame-accurate, Premiere 2022-importable)", "status": "done", "note": "make_sequence.py, smoke-tested (NTSC math, reorder, BOM)" },
+    { "item": "Word-level transcription step + dependency check", "status": "done", "note": "transcribe.py + preflight section" },
+    { "item": "Cut-decision rubric incl. keep-last-good-take retake logic", "status": "done", "note": "P2" },
+    { "item": "Coherence gate on kept transcript", "status": "done", "note": "P3, re-run after P4/P5" },
+    { "item": "≤60s enforcement ladder", "status": "done", "note": "P4 fixed order, core inviolable" },
+    { "item": "Hook pass (reorder when it improves the edit)", "status": "done", "note": "P5 conservative per D6" },
+    { "item": "9:16 vertical sequence settings", "status": "done", "note": "1080x1920 @ source fps, fill-height scale" },
+    { "item": "SRT captions from kept content", "status": "done", "note": "re-timed to sequence, ≤4-word cues" },
+    { "item": "Edit report with cuts + reasons + runtime", "status": "done", "note": "Output section" },
+    { "item": "XML structural self-check", "status": "done", "note": "in make_sequence.py, failure = stop" },
+    { "item": "handoffs_to / expects_from", "status": "struck", "note": "standalone; nothing composes with it yet" }
+  ],
+  "uniqueWedge": "Unlike auto-editor/ButterCut-style roughcut and silence-cut tools, raw-to-reel makes editorial judgments from the transcript — drops flubbed/repeated takes keeping the best one, tightens to ≤60s through a coherence gate so the survivor still makes sense, and leads with the hook — delivering a post-ready 9:16 Premiere sequence + captions rather than a roughcut.",
+  "steps": [
+    { "skill": "forge-1-extract", "status": "complete", "gate": "always", "runAt": "2026-07-03T06:57:00Z", "findings": { "category": "automation", "complexity": "complex" }, "annotations": ["[!NEEDS-ASSET] FCP7 XML generator script is load-bearing; Build must produce and test it"] },
+    { "skill": "forge-2-novelty", "status": "complete", "gate": "always", "runAt": "2026-07-03T07:05:00Z", "findings": { "collision": { "topNeighbors": [ {"slug": "infographic-builder", "score": 10}, {"slug": "skills-sh-finder", "score": 5}, {"slug": "excalidraw-diagram-generator", "score": 4} ], "maxScore": 10 }, "ecosystemPriorArt": ["buttercut (roughcut→NLE XML, noncommercial license)", "auto-editor (mechanical silence→Premiere)", "6missedcalls/video-editing-skill (ffmpeg jumpcut, destructive)"], "verdict": "PROCEED" }, "annotations": ["[!NEEDS-ASSET] FCP7 XML generator must be verified against Premiere importer shape", "boundary: in-Vyra sessions → Vyra skills; mechanical-silence-only asks → point at auto-editor-class tools"] },
+    { "skill": "forge-3-grill", "status": "complete", "gate": "hard-proceed:complexity-medium+", "runAt": "2026-07-03T07:12:00Z", "findings": { "resolved": ["keep-last-complete-take", "no-mid-word-cuts+padding", "conservative-hook-reorder", "1080x1920-center-crop", "srt-short-cues", "preflight-deps"], "goldenScenarios": 4 }, "annotations": [] },
+    { "skill": "forge-3b-ideate", "status": "complete", "gate": "full-only", "runAt": "2026-07-03T07:18:00Z", "findings": { "proposed": 12, "accepted": 0, "optInCandidates": ["B1", "B2", "C1"] }, "annotations": [] },
+    { "skill": "forge-3c-shape", "status": "complete", "gate": "full-only", "runAt": "2026-07-03T07:20:00Z", "findings": { "decision": "standalone" }, "annotations": [] },
+    { "skill": "forge-4-blueprint", "status": "complete", "gate": "always", "runAt": "2026-07-03T07:26:00Z", "findings": { "sections": 7, "scripts": 2, "goldenExamples": 3, "arenaPrompts": 12 }, "annotations": [] },
+    { "skill": "forge-5-build", "status": "complete", "gate": "always", "runAt": "2026-07-03T07:40:00Z", "findings": { "draftSkill": "draft/SKILL.md", "scripts": ["transcribe.py", "make_sequence.py (smoke-tested: NTSC frame math, reorder re-timing, BOM tolerance, pathurl fixed)"], "goldenExamples": 3, "deviations": "none" }, "annotations": ["[!NEEDS-ASSET]-RESOLVED — XML generator built and smoke-tested against synthetic cutlist"] },
+    { "skill": "forge-6-verify", "status": "complete", "gate": "always", "runAt": "2026-07-03T07:52:00Z", "findings": { "arena": { "precision": 1.0, "recall": 1.0, "f1": 1.0, "misfires": [], "selfRepair": "description gained interview/multi-speaker + finished-long-video boundary; arena re-run clean" }, "goldenExamples": { "passed": 3, "total": 3 }, "verdict": "PASS" }, "annotations": [] }
+  ],
+  "decisions": [
+    { "id": "D1", "step": "intake", "decision": "Editing backend / deliverable target", "chosen": "Premiere Pro 2022 via FCP7 XML interchange + SRT (local ffmpeg+whisper pipeline, no Vyra dependency)", "provenance": "user", "rationale": "User asked for Premiere output; .prproj is undocumented — FCP7 XML is the reliable, importable interchange.", "affects": ["brief.md", "consumed-by: novelty, blueprint, build, verify"], "superseded": false },
+    { "id": "D2", "step": "intake", "decision": "Post-ready scope", "chosen": "cuts + captions + 9:16 reframe + hook/pacing pass", "provenance": "user", "rationale": "User selected all four polish options.", "affects": ["brief.md", "consumed-by: blueprint, build"], "superseded": false },
+    { "id": "D3", "step": "intake", "decision": "Over-60s behavior", "chosen": "cut weakest content automatically until ≤60s, preserving core message", "provenance": "user", "rationale": "User picked 'cut for time'.", "affects": ["brief.md", "consumed-by: build"], "superseded": false },
+    { "id": "D4", "step": "forge-3-grill", "decision": "Retake handling", "chosen": "keep LAST complete take; fall back to most complete if last is broken", "provenance": "default", "rationale": "Creators re-record until they nail it; completeness check guards the exception.", "affects": ["grill.md", "consumed-by: blueprint, build, verify"], "superseded": false },
+    { "id": "D5", "step": "forge-3-grill", "decision": "Cut hygiene", "chosen": "never mid-word; ~150-200ms padding; frame-snapped; straight jump-cuts", "provenance": "default", "rationale": "Short-form aesthetic accepts jump-cuts; padding prevents clipped syllables and robotic pacing.", "affects": ["grill.md", "consumed-by: build"], "superseded": false },
+    { "id": "D6", "step": "forge-3-grill", "decision": "Hook pass aggressiveness", "chosen": "conservative reorder — only when clearly stronger AND seam survives coherence gate; else cut preamble instead", "provenance": "default", "rationale": "Reordering risks continuity; cutting throat-clearing achieves the same hook most of the time.", "affects": ["grill.md", "consumed-by: build, verify"], "superseded": false },
+    { "id": "D7", "step": "forge-3-grill", "decision": "9:16 framing default", "chosen": "1080x1920 @ source fps; scale-to-fill-height center crop; user adjusts in Premiere", "provenance": "default", "rationale": "Sane default; framing taste belongs to the user in the NLE.", "affects": ["grill.md", "consumed-by: build"], "superseded": false },
+    { "id": "D8", "step": "forge-3-grill", "decision": "Caption format", "chosen": "SRT, short cues (≤4 words, ≥0.5s), re-timed to edited sequence; styling left to Premiere", "provenance": "default", "rationale": "SRT is what Premiere 2022 ingests; short cues match short-form pacing.", "affects": ["grill.md", "consumed-by: build"], "superseded": false },
+    { "id": "D9", "step": "final-gate", "decision": "Ideation B1 accepted: optional phone preview render", "chosen": "P8 + scripts/render_preview.py (540x960, captions burned in, offered at handover)", "provenance": "user", "rationale": "User opted in at final gate; delta re-verified PASS.", "affects": ["draft/SKILL.md", "draft/scripts/render_preview.py"], "superseded": false },
+    { "id": "D10", "step": "final-gate", "decision": "Ideation C1 accepted: post kit in report", "chosen": "caption + 3 titles + hashtags, grounded in kept transcript only", "provenance": "user", "rationale": "User opted in at final gate; delta re-verified PASS.", "affects": ["draft/SKILL.md"], "superseded": false }
+  ],
+  "blockers": [],
+  "escalated": false
+}

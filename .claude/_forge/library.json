@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-07-01T13:17:39.436347+00:00",
+  "generatedAt": "2026-07-03T09:26:24.464935+00:00",
   "skillsDir": "C:\\Users\\darre\\Documents\\repos\\claude\\.claude\\skills",
-  "count": 18,
+  "count": 19,
   "unversioned": [
     "excalidraw-diagram-generator",
     "expand-and-contract",
@@ -206,6 +206,20 @@
       "has_scripts": false,
       "has_references": false,
       "looks_like_pipeline": false,
+      "integration_excerpt": ""
+    },
+    {
+      "slug": "raw-to-reel",
+      "name": "raw-to-reel",
+      "description": "Turn one raw talking-to-camera video into a post-ready \u226460-second short-form edit, delivered as a Premiere Pro-importable sequence (FCP7 XML, 9:16) plus SRT captions and a cut report. Transcribes with word-level timestamps, then makes EDITORIAL cuts \u2014 flubbed/repeated takes (keeps the last complete one), filler words, dead air, false starts \u2014 tightens for time through a coherence gate so the surviving message still makes sense, and leads with the hook. Trigger when the user says \"clean up this raw video for socials\", \"remove the mistakes from my talking-head clip\", \"turn this raw take into a reel\", \"make this post-ready \u2014 cut the flubs and dead air\", \"get this down to 60 seconds for TikTok/Shorts\", or \"I recorded myself talking, edit out the bad takes\". Do NOT use for long-form content or mechanical silence-stripping of podcasts/lectures (point at auto-editor-class tools), videos without speech, multi-cam / b-roll-driven / interview or multi-speaker edits, repurposing an already-finished long video into clips, editing inside a connected Vyra session (use Vyra's own skills), or caption-only / format-conversion-only asks.",
+      "version": "1.0.0",
+      "category": null,
+      "handoffs_to": [],
+      "expects_from": [],
+      "is_forge_internal": false,
+      "has_scripts": true,
+      "has_references": true,
+      "looks_like_pipeline": true,
       "integration_excerpt": ""
     },
     {
