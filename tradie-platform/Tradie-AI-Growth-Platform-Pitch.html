@@ -1,0 +1,956 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Work Before the Work — Investor & Strategy Pitch</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 18mm 18mm 18mm;
+  }
+  @page :first {
+    margin: 0;
+  }
+
+  :root {
+    --ink:      #14243A;
+    --ink-soft: #3D4E63;
+    --muted:    #6B7789;
+    --rule:     #DCE1E8;
+    --accent:   #B5691F;
+    --accent-l: #FDF4EA;
+    --wash:     #F5F7FA;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    margin: 0;
+    font-family: Georgia, "Cambria", serif;
+    font-size: 10.5pt;
+    line-height: 1.62;
+    color: var(--ink);
+    background: #fff;
+  }
+
+  h1, h2, h3, h4, .sans {
+    font-family: "Segoe UI", "Calibri", sans-serif;
+  }
+
+  p { margin: 0 0 0.85em; }
+  strong { color: var(--ink); font-weight: 700; }
+
+  /* ---------- COVER ---------- */
+  .cover {
+    height: 296mm;
+    padding: 34mm 22mm 22mm;
+    display: flex;
+    flex-direction: column;
+    background: var(--ink);
+    color: #fff;
+    page-break-after: always;
+  }
+  .cover .eyebrow {
+    font-family: "Segoe UI", sans-serif;
+    font-size: 8.5pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #93A6BE;
+    margin-bottom: 26mm;
+  }
+  .cover h1 {
+    font-family: Georgia, serif;
+    font-size: 40pt;
+    line-height: 1.1;
+    font-weight: 400;
+    margin: 0 0 10mm;
+    letter-spacing: -0.5pt;
+  }
+  .cover h1 em {
+    font-style: italic;
+    color: #E8A860;
+  }
+  .cover .deck {
+    font-size: 13pt;
+    line-height: 1.55;
+    color: #C9D4E2;
+    max-width: 128mm;
+    margin: 0 0 auto;
+  }
+  .cover .rule {
+    width: 26mm;
+    height: 2.5pt;
+    background: var(--accent);
+    margin: 0 0 9mm;
+  }
+  .cover-meta {
+    border-top: 1px solid #2C3F58;
+    padding-top: 6mm;
+    display: flex;
+    gap: 8mm;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 8pt;
+    color: #8397B0;
+  }
+  .cover-meta div { flex: 1; }
+  .cover-meta div span {
+    display: block;
+    color: #E3EAF3;
+    font-size: 9.5pt;
+    line-height: 1.35;
+    margin-top: 1.5mm;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section { page-break-before: always; }
+  section.flow { page-break-before: auto; }
+
+  .sec-num {
+    font-family: "Segoe UI", sans-serif;
+    font-size: 8pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 3mm;
+  }
+  h2 {
+    font-size: 21pt;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 5mm;
+    letter-spacing: -0.3pt;
+    color: var(--ink);
+  }
+  h3 {
+    font-size: 11.5pt;
+    font-weight: 600;
+    margin: 7mm 0 2.5mm;
+    color: var(--ink);
+    letter-spacing: 0.1pt;
+  }
+  h4 {
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin: 0 0 2.5mm;
+  }
+  .lede {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 7mm;
+    padding-bottom: 6mm;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ---------- COMPONENTS ---------- */
+  blockquote {
+    margin: 6mm 0;
+    padding: 0 0 0 7mm;
+    border-left: 2.5pt solid var(--accent);
+    font-size: 12.5pt;
+    line-height: 1.45;
+    font-style: italic;
+    color: var(--ink);
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+
+  .callout {
+    background: var(--accent-l);
+    border: 1px solid #F0DCC2;
+    border-radius: 2pt;
+    padding: 5mm 6mm;
+    margin: 6mm 0;
+  }
+  .callout h4 { color: var(--accent); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  .panel {
+    background: var(--wash);
+    border-radius: 2pt;
+    padding: 5mm 6mm;
+    margin: 6mm 0;
+  }
+  .panel p:last-child, .panel ul:last-child { margin-bottom: 0; }
+
+  .cols {
+    display: flex;
+    gap: 8mm;
+    margin: 6mm 0;
+  }
+  .cols > div { flex: 1; }
+
+  ul, ol { margin: 0 0 0.9em; padding-left: 5mm; }
+  li { margin-bottom: 1.6mm; padding-left: 1mm; }
+  ul.tight li { margin-bottom: 0.8mm; }
+  ul.plain { list-style: none; padding-left: 0; }
+  ul.plain li {
+    padding-left: 6mm;
+    position: relative;
+  }
+  ul.plain li:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2.2mm;
+    width: 2.2mm;
+    height: 2.2mm;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 5mm 0;
+    font-size: 9.5pt;
+    font-family: "Segoe UI", sans-serif;
+  }
+  th {
+    text-align: left;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 600;
+    padding: 0 4mm 2mm 0;
+    border-bottom: 1.5pt solid var(--ink);
+  }
+  td {
+    padding: 2.6mm 4mm 2.6mm 0;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.45;
+  }
+  td:last-child, th:last-child { padding-right: 0; }
+  .num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .hl { color: var(--accent); font-weight: 600; }
+
+  /* stat row */
+  .stats {
+    display: flex;
+    gap: 6mm;
+    margin: 6mm 0;
+  }
+  .stat {
+    flex: 1;
+    border-top: 2.5pt solid var(--accent);
+    padding-top: 3mm;
+  }
+  .stat .big {
+    font-family: "Segoe UI", sans-serif;
+    font-size: 19pt;
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 1.5mm;
+    letter-spacing: -0.4pt;
+  }
+  .stat .lbl {
+    font-family: "Segoe UI", sans-serif;
+    font-size: 8pt;
+    line-height: 1.35;
+    color: var(--muted);
+  }
+
+  /* screen mock */
+  .mock {
+    border: 1px solid var(--rule);
+    border-radius: 3pt;
+    overflow: hidden;
+    margin: 6mm 0;
+    font-family: "Segoe UI", sans-serif;
+  }
+  .mock-bar {
+    background: var(--ink);
+    color: #fff;
+    padding: 2.5mm 5mm;
+    font-size: 8.5pt;
+    letter-spacing: 0.06em;
+    display: flex;
+    justify-content: space-between;
+  }
+  .mock-bar strong { color: #fff; letter-spacing: 0.12em; }
+  .mock-bar span { color: #93A6BE; }
+  .mock-body { padding: 4mm 5mm 4.5mm; }
+  .mock-row {
+    display: flex;
+    gap: 4mm;
+    padding: 2.2mm 0;
+    border-bottom: 1px solid #EDF0F4;
+    font-size: 9.5pt;
+    align-items: baseline;
+  }
+  .mock-row:last-child { border-bottom: none; }
+  .mock-row .tag {
+    font-size: 7.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    width: 20mm;
+    flex-shrink: 0;
+  }
+  .mock-row .why { color: var(--muted); font-size: 8.5pt; }
+
+  .footnote {
+    font-size: 8.5pt;
+    line-height: 1.5;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 4mm;
+  }
+
+  .kicker {
+    font-family: "Segoe UI", sans-serif;
+    font-size: 9.5pt;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 1.5mm;
+  }
+
+  .risk {
+    margin: 4mm 0;
+    padding-left: 5mm;
+    border-left: 2pt solid var(--rule);
+  }
+  .risk .r-t { font-weight: 700; font-family: "Segoe UI", sans-serif; font-size: 10pt; }
+  .risk p { margin-bottom: 0.4em; }
+  .risk .ans { color: var(--ink-soft); }
+  .risk .ans:before {
+    content: "Answer  ";
+    font-family: "Segoe UI", sans-serif;
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .closing {
+    background: var(--ink);
+    color: #E3EAF3;
+    padding: 8mm 9mm;
+    border-radius: 2pt;
+    margin-top: 7mm;
+  }
+  .closing p { color: #C9D4E2; }
+  .closing .big-line {
+    font-size: 14pt;
+    line-height: 1.4;
+    color: #fff;
+    font-style: italic;
+    margin-bottom: 4mm;
+  }
+  .closing .big-line em { color: #E8A860; font-style: italic; }
+
+  .avoid-break { page-break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<div class="cover">
+  <div class="eyebrow">Business &amp; Go-to-Market Pitch &nbsp;·&nbsp; Confidential</div>
+  <div class="rule"></div>
+  <h1>The work<br>before<br><em>the work.</em></h1>
+  <p class="deck">
+    Every piece of software a trade contractor owns starts working the moment a job is won.
+    Nothing works on the part before that — the quote nobody chased, the customer nobody called back,
+    the crew with three empty days next week.
+    <br><br>
+    We are building the revenue operating system for that gap.
+  </p>
+  <div class="cover-meta">
+    <div>Category<span>AI Revenue OS<br>for the Trades</span></div>
+    <div>Stage<span>Pre-seed<br>concept</span></div>
+    <div>Market<span>Australia first,<br>then NZ · UK · CA · US</span></div>
+    <div>Date<span>July 2026</span></div>
+  </div>
+</div>
+
+<!-- ============ 1. THESIS ============ -->
+<section class="flow">
+  <div class="sec-num">01 — The Thesis</div>
+  <h2>A whole industry that is good at the work and bad at winning it</h2>
+
+  <p class="lede">
+    Trade businesses are founded by tradespeople, not salespeople. They can deliver almost anything they
+    take on. What they cannot do — reliably, while standing on a roof — is respond in ten minutes, chase a
+    quote on day seven, and notice that forty-one customers are due for service this month.
+  </p>
+
+  <p>
+    The owner is the bottleneck, and the bottleneck is structural rather than lazy. A burst pipe, a missing
+    employee or an angry client gets attention immediately. A seven-day-old quote worth $18,000 does not,
+    because nothing in the business escalates it. Sales work is the only work with no deadline, so it moves
+    to 9pm, and then to never.
+  </p>
+
+  <p>
+    The result is a business with a healthy top of funnel and a leaking middle. The money has already been
+    spent to generate the enquiry. The site visit has already been driven to. The quote has already been
+    written. And then it sits.
+  </p>
+
+  <div class="callout">
+    <h4>The observation the company is built on</h4>
+    <p>
+      Trade software has spent fifteen years solving the operational half of the business — scheduling,
+      dispatch, timesheets, invoicing, compliance. All of it activates <strong>after the job is won.</strong>
+      The commercial half — respond, qualify, follow up, reactivate, fill the calendar — was left to the
+      owner's memory and spare time. That is where the money leaks, and that is the half nobody has
+      productised for this customer.
+    </p>
+  </div>
+
+  <blockquote>
+    Job-management software helps contractors organise the work they have won.
+    We help them create, recover and convert the work they need next.
+  </blockquote>
+</section>
+
+<!-- ============ 2. THE LEAKS ============ -->
+<section>
+  <div class="sec-num">02 — The Problem, Specifically</div>
+  <h2>Seven leaks, all of them expensive, none of them visible</h2>
+
+  <p class="lede">
+    Contractors do not experience this as one problem. They experience it as seven small
+    frustrations that never quite justify a solution on their own — which is exactly why the
+    accumulated cost stays invisible.
+  </p>
+
+  <table>
+    <thead>
+      <tr><th style="width:38mm">The leak</th><th>What actually happens</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Slow response</strong></td>
+        <td>An enquiry arrives at 10am. The owner is under a house. It is answered at 6pm, by which time a faster competitor has already booked the job.</td>
+      </tr>
+      <tr>
+        <td><strong>Missed calls</strong></td>
+        <td>The phone rings while driving, drilling or talking to another customer. Most callers never leave a voicemail — they just call the next name on the list.</td>
+      </tr>
+      <tr>
+        <td><strong>Unchased quotes</strong></td>
+        <td>Quotes are sent and abandoned. Owners forget, get busy, or feel uncomfortable appearing to chase. The customer reads it as disinterest.</td>
+      </tr>
+      <tr>
+        <td><strong>Weak qualification</strong></td>
+        <td>Half a day is lost driving to a job that was never going to be worth taking, because nobody asked four questions up front.</td>
+      </tr>
+      <tr>
+        <td><strong>Forgotten customers</strong></td>
+        <td>Ten years of customers sit in a database with no mechanism to notice that a service, a warranty, or a replacement is due.</td>
+      </tr>
+      <tr>
+        <td><strong>Reactive capacity</strong></td>
+        <td>Nobody sees the empty week until it is this week — far too late to generate demand for it.</td>
+      </tr>
+      <tr>
+        <td><strong>No pipeline visibility</strong></td>
+        <td>The owner cannot answer how much open work exists, why jobs are lost, or what next month looks like.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Why the obvious answer — "buy a CRM" — has already failed</h3>
+  <p>
+    Generic CRMs assume a user sitting at a desk who wants to build a pipeline. Trade owners are not
+    that user, and the software's failure mode is predictable: it becomes a database nobody updates,
+    then gets cancelled. Salesforce, HubSpot and Pipedrive are not too expensive for this market. They
+    are too <em>empty</em>. They ask the busiest person in the business to do data entry as the price of
+    getting value, and he will not.
+  </p>
+
+  <div class="panel">
+    <h4>What this customer will actually adopt</h4>
+    <div class="cols">
+      <div>
+        <ul class="tight plain">
+          <li>Mobile-first, usable between jobs</li>
+          <li>Opinionated, not configurable</li>
+          <li>Fed by existing systems, not manual entry</li>
+        </ul>
+      </div>
+      <div>
+        <ul class="tight plain">
+          <li>Action lists, not record lists</li>
+          <li>Plain trade language, no CRM jargon</li>
+          <li>Useful in a four-minute session</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:4mm"><strong>The customer does not want a better database. He wants more profitable work in the calendar.</strong></p>
+  </div>
+</section>
+
+<!-- ============ 3. THE WEDGE ============ -->
+<section>
+  <div class="sec-num">03 — The Wedge</div>
+  <h2>Start with the money that is already inside the business</h2>
+
+  <p class="lede">
+    The temptation is to launch the whole vision: AI receptionist, lead marketplace, tender portal, CRM.
+    That is how this company dies. The first product does one thing, and it is chosen for how easily it
+    can be proven.
+  </p>
+
+  <blockquote>
+    AI quote follow-up and customer reactivation<br>for established trade contractors.
+  </blockquote>
+
+  <p>
+    We connect to the systems the contractor already runs, ingest their customers and open quotes, identify
+    the revenue at risk, automate the follow-up that should have happened, and tell the owner exactly who
+    needs a human phone call today.
+  </p>
+
+  <h3>Why this wedge and not a more exciting one</h3>
+  <div class="cols">
+    <div>
+      <ul class="plain tight">
+        <li><strong>The lead is already paid for.</strong> No argument about lead quality — it is their own customer.</li>
+        <li><strong>The quote already exists.</strong> Nothing to build, sell or generate first.</li>
+        <li><strong>The loss is measurable.</strong> We can quantify it before they buy and after they implement.</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="plain tight">
+        <li><strong>The workflow repeats weekly.</strong> Habit forms, so retention has a mechanism.</li>
+        <li><strong>It complements incumbents.</strong> No rip-and-replace conversation in year one.</li>
+        <li><strong>It is honest.</strong> We are not promising leads we cannot control.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>The deliberate discipline</h4>
+    <p>
+      Cold lead generation, AI voice agents and tender intelligence are all in the long-term vision and all
+      strategically defensible. None of them are the first proof point. Recovery is more credible, more
+      controllable, and easier to attribute — and attribution is what earns the right to expand.
+    </p>
+  </div>
+
+  <h3>What it grows into</h3>
+  <p>
+    Once trust and ROI are established, the same system answers the full set of commercial questions a
+    trade business cannot currently answer: where the next jobs come from, which leads to call first, which
+    quotes will close, which customers are due, which crews will be idle, which commercial accounts to
+    approach, and what revenue lands in the next 30, 60 and 90 days. That is the revenue operating system.
+    The quote follow-up engine is simply the way in.
+  </p>
+</section>
+
+<!-- ============ 4. PRODUCT ============ -->
+<section>
+  <div class="sec-num">04 — The Product</div>
+  <h2>It opens with a decision, not a dashboard</h2>
+
+  <p class="lede">
+    The design principle is narrow and load-bearing: the home screen never shows records. It shows what to
+    do, in order, with the reason attached. A contractor should get value from ninety seconds on a phone in
+    a ute.
+  </p>
+
+  <div class="mock avoid-break">
+    <div class="mock-bar"><strong>TODAY</strong><span>Thursday · 5 actions · $84,200 open pipeline</span></div>
+    <div class="mock-body">
+      <div class="mock-row">
+        <div class="tag">Call now</div>
+        <div><strong>Morrison Property Group — $18,400</strong><br>
+          <span class="why">Viewed the quote three times this morning and opened the warranty document.</span></div>
+      </div>
+      <div class="mock-row">
+        <div class="tag">Approve</div>
+        <div><strong>Follow-up to Liam Doherty — $6,200</strong><br>
+          <span class="why">Quote expires Friday. No contact in nine days. Draft ready to send.</span></div>
+      </div>
+      <div class="mock-row">
+        <div class="tag">Review</div>
+        <div><strong>3 new enquiries collected overnight</strong><br>
+          <span class="why">All qualified and classified. One flagged commercial, high value.</span></div>
+      </div>
+      <div class="mock-row">
+        <div class="tag">Campaign</div>
+        <div><strong>14 customers due for annual service</strong><br>
+          <span class="why">Estimated $13,500–$22,000. Awaiting your approval to send.</span></div>
+      </div>
+      <div class="mock-row">
+        <div class="tag">Capacity</div>
+        <div><strong>Crew 2 has 1.5 open days next Thursday</strong><br>
+          <span class="why">11 deferred customers within 20km of Parramatta could fill it.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>The five engines behind that screen</h3>
+
+  <table>
+    <thead><tr><th style="width:42mm">Engine</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Quote follow-up</strong><br><span style="font-size:8.5pt;color:var(--muted)">Flagship</span></td>
+        <td>Sequences follow-up by quote value, customer type, urgency, age and engagement — then stops itself the moment the customer replies, the salesperson makes contact, the quote closes, or anything sensitive is detected.</td></tr>
+      <tr><td><strong>Intent signals</strong></td>
+        <td>Translates behaviour into one instruction. Not "lead score: 87" but "call today — they opened this three times and asked for your insurance certificate."</td></tr>
+      <tr><td><strong>Reactivation</strong></td>
+        <td>Reads service history for warranty expiry, seasonal cycles, compliance renewals, equipment age and deferred work, then builds small targeted campaigns instead of bulk mail-outs.</td></tr>
+      <tr><td><strong>Capacity intelligence</strong></td>
+        <td>Joins the sales pipeline to the crew calendar — the differentiator a generic CRM structurally cannot have. It knows not just what the pipeline is worth, but whether you have the people, skills and geography to deliver it.</td></tr>
+      <tr><td><strong>Sales coach</strong></td>
+        <td>Surfaces patterns from the customer's own data: quotes sent within 24 hours convert better; one estimator closes well but quotes slowly; jobs from this source carry low margin.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="panel avoid-break">
+    <h4>On AI autonomy — the part that protects the brand</h4>
+    <p>
+      This product speaks to a contractor's customers in the contractor's name. A bad message costs more than
+      a missed one. So automation is earned in four stages: <strong>draft only</strong>, then
+      <strong>approval queue</strong>, then <strong>guarded automation</strong> within approved templates,
+      and only then <strong>advanced autonomy</strong>. AI never sets price, offers discounts, invents a
+      licence or makes a scope commitment. Every message is logged with who sent it, what data informed it,
+      and whether a human approved it.
+    </p>
+  </div>
+
+  <h3>Integrate before replacing</h3>
+  <p>
+    ServiceM8, simPRO, AroFlo, Tradify, Fergus, Jobber and Xero remain the systems of record for jobs and
+    money. We become the system of record for <em>growth</em> — engagement, follow-up strategy, revenue
+    actions and attribution. That framing removes the switching cost that kills most new entrants into this
+    market, and it means the incumbent's data makes our product better rather than making it redundant.
+  </p>
+</section>
+
+<!-- ============ 5. MARKET ============ -->
+<section>
+  <div class="sec-num">05 — Market &amp; Customer</div>
+  <h2>Big enough to matter, fragmented enough to enter</h2>
+
+  <p class="lede">
+    Australia's construction and trade-services economy is large, fragmented and unusually well suited to
+    vertical SaaS: no dominant customer, high value per incremental job, repeatable workflows, and — critically —
+    existing software adoption that gives us data to work with on day one.
+  </p>
+
+  <div class="stats">
+    <div class="stat"><span class="big">3–30</span><span class="lbl">Field employees in the target business</span></div>
+    <div class="stat"><span class="big">$750k–$15m</span><span class="lbl">Annual revenue band</span></div>
+    <div class="stat"><span class="big">20+</span><span class="lbl">Meaningful quotes issued per month</span></div>
+    <div class="stat"><span class="big">5 markets</span><span class="lbl">Same problem in AU, NZ, UK, CA, US</span></div>
+  </div>
+
+  <h3>"Tradies" is not a go-to-market</h3>
+  <p>
+    Every trade has different job values, urgency, repeat cycles and vocabulary. Entering broadly means
+    speaking to nobody. We enter through one vertical where quote values are meaningful, quote volume is
+    high enough to create measurable leakage, recurring service exists, and the data is already digital.
+  </p>
+
+  <table>
+    <thead><tr><th style="width:52mm">First vertical candidates</th><th>Why it fits</th></tr></thead>
+    <tbody>
+      <tr><td><strong>HVAC &amp; refrigeration</strong><br><span class="hl" style="font-size:8.5pt">Lead candidate</span></td>
+        <td>Seasonal demand, service intervals, maintenance plans, high-value replacements and commercial accounts — the strongest combination of recurring and recoverable revenue.</td></tr>
+      <tr><td><strong>Commercial electrical</strong></td>
+        <td>Project work plus maintenance contracts, compliance cycles and genuine commercial prospecting upside.</td></tr>
+      <tr><td><strong>Multi-crew plumbing</strong></td>
+        <td>High enquiry volume, emergency work, constant quoting and real capacity-management pain.</td></tr>
+      <tr><td><strong>Fire protection</strong></td>
+        <td>Servicing is recurring and compliance-driven — close to automatable renewal revenue.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Who we deliberately will not sell to yet</h3>
+  <p>
+    New sole traders, low-ticket operators where the subscription cannot be justified, cash-based
+    businesses, anyone refusing digital systems, buyers who want guaranteed leads without doing sales work,
+    and large enterprises requiring custom procurement before the product is mature. Each of these is a
+    support burden and a churn statistic dressed as a customer.
+  </p>
+</section>
+
+<!-- ============ 6. BUSINESS MODEL ============ -->
+<section>
+  <div class="sec-num">06 — Business Model</div>
+  <h2>Priced against the value of a job, not the number of seats</h2>
+
+  <p class="lede">
+    This product influences real revenue. Pricing it as a utility would weaken the positioning and starve
+    the onboarding and support that this customer demonstrably needs.
+  </p>
+
+  <table>
+    <thead><tr><th style="width:28mm">Tier</th><th style="width:32mm">AUD / month</th><th>Included</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Pilot</strong></td><td class="num">$300 – $750</td>
+        <td>Founder-led onboarding, revenue leak audit, manual-assisted delivery. Paid — never free.</td></tr>
+      <tr><td><strong>Growth</strong></td><td class="num hl">$499</td>
+        <td>Quote pipeline, automated follow-up, reactivation, AI prioritisation, standard integration, limited users.</td></tr>
+      <tr><td><strong>Scale</strong></td><td class="num hl">$999</td>
+        <td>Multiple teams, capacity intelligence, advanced automation and reporting, multiple integrations, commercial workflows.</td></tr>
+      <tr><td><strong>Multi-branch</strong></td><td class="num">$1,500 – $3,000+</td>
+        <td>Multi-branch, account-based prospecting, tender intelligence, custom workflows, dedicated onboarding.</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Layered on top: <strong>metered usage</strong> for SMS, voice, AI call minutes and data enrichment —
+    which protects gross margin as AI costs move — and a <strong>$500–$3,000 onboarding fee</strong> for data
+    cleanup, integration and campaign configuration. The onboarding fee is not a revenue line. It is a
+    filter: customers who pay for implementation actually implement.
+  </p>
+
+  <h3>Why not outcome-based pricing</h3>
+  <p>
+    Charging a percentage of recovered revenue sounds perfectly aligned and creates permanent attribution
+    disputes — the customer will always believe they would have won that job anyway, and sometimes they are
+    right. Subscription first. A success fee is only defensible later, and only on opportunities we
+    demonstrably <em>sourced</em> rather than assisted.
+  </p>
+
+  <h3 style="margin-top:8mm">The value arithmetic</h3>
+  <div class="panel avoid-break">
+    <h4>Illustrative model — a representative Growth-tier customer</h4>
+    <table style="margin:2mm 0 0">
+      <tbody>
+        <tr><td>Quotes issued per month</td><td class="num" style="text-align:right;width:32mm">40</td></tr>
+        <tr><td>Average quote value</td><td class="num" style="text-align:right">$5,000</td></tr>
+        <tr><td>Monthly quoted value</td><td class="num" style="text-align:right">$200,000</td></tr>
+        <tr><td>Current win rate</td><td class="num" style="text-align:right">25%</td></tr>
+        <tr><td>Improvement from disciplined follow-up</td><td class="num" style="text-align:right">+3 pts</td></tr>
+        <tr><td><strong>Incremental booked revenue</strong></td><td class="num" style="text-align:right"><strong>$6,000 / mo</strong></td></tr>
+        <tr><td>At 35% gross margin</td><td class="num hl" style="text-align:right"><strong>$2,100 gross profit / mo</strong></td></tr>
+        <tr><td>Subscription cost</td><td class="num" style="text-align:right">$499 – $999 / mo</td></tr>
+      </tbody>
+    </table>
+    <p class="footnote">
+      Illustrative arithmetic only, built from the assumptions above — not observed results. The company has
+      no customers yet. Validating whether a three-point conversion lift is real, and repeatable, is the
+      entire purpose of the concierge and pilot phases described in section 08.
+    </p>
+  </div>
+
+  <p>
+    The point of the model is not the specific number. It is the shape: <strong>one recovered job pays for
+    months of subscription</strong>, which is what makes a $499–$999 price defensible to a business owner
+    who is otherwise extremely price-sensitive about software.
+  </p>
+</section>
+
+<!-- ============ 7. GTM ============ -->
+<section>
+  <div class="sec-num">07 — Go-to-Market</div>
+  <h2>Sell the diagnosis, not the software</h2>
+
+  <p class="lede">
+    Nobody in this market wants to buy an AI platform. They want to know what they are losing. So the
+    product is not the first thing we sell — the audit is.
+  </p>
+
+  <div class="callout">
+    <h4>The Revenue Leak Audit</h4>
+    <p>
+      A short, paid or low-cost engagement using the contractor's own exported quote and customer data. It
+      quantifies open quote value, quotes with no follow-up, average response time, dormant customers
+      eligible for reactivation, loss reasons and recurring-service potential.
+    </p>
+    <p style="margin-top:3mm">
+      <em>"In the last 12 months you issued $2.1 million in quotes. $610,000 received no recorded follow-up.
+      Recovering 5% of that is $30,500 in additional work."</em>
+    </p>
+  </div>
+
+  <p>
+    That single sentence does four jobs at once: it is the sales pitch, the qualification filter, the
+    ROI baseline we will later measure against, and the onboarding data import. It is also nearly impossible
+    to argue with, because it is built entirely from the contractor's own numbers.
+  </p>
+
+  <h3>Sequence</h3>
+  <ol>
+    <li><strong>Founder-led selling.</strong> Direct, unscaled, deliberately. The point is learning which leak hurts most, what language lands, which integration is non-negotiable, and how much automation is trusted.</li>
+    <li><strong>5–10 pilots in one vertical.</strong> Real data access, weekly feedback, agreed baseline metrics, and permission to build an anonymised case study.</li>
+    <li><strong>Case study, then channel.</strong> A proven number in one vertical is the asset that makes every partner conversation work.</li>
+  </ol>
+
+  <h3>Channels, in order of leverage</h3>
+  <table>
+    <thead><tr><th style="width:52mm">Channel</th><th>Why it works</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Job-management consultants</strong></td><td>The people implementing ServiceM8, simPRO and AroFlo already have the trust and the customer list. We make their implementations look better.</td></tr>
+      <tr><td><strong>Marketing agencies serving trades</strong></td><td>Agencies get blamed when contractors fail to respond to the leads they generate. We fix their attribution problem — a genuinely aligned incentive.</td></tr>
+      <tr><td><strong>Accountants &amp; bookkeepers</strong></td><td>They know precisely which clients are growing, disorganised or cash-constrained.</td></tr>
+      <tr><td><strong>Industry associations &amp; wholesalers</strong></td><td>Established distribution into large contractor networks.</td></tr>
+      <tr><td><strong>Educational content</strong></td><td>Quote follow-up scripts, response-time benchmarks, how to fill a slow month. Content that is useful without the product builds the audience that buys it.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>The demo</h3>
+  <p>
+    Always run on the prospect's own data. Show the neglected open quote value first — before any feature —
+    then the priority queue, the safe follow-up sequence, the customers due for service, and the
+    recovered-revenue report. The feature tour is the last thing they see, if they see it at all.
+  </p>
+</section>
+
+<!-- ============ 8. VALIDATION ============ -->
+<section>
+  <div class="sec-num">08 — Validation &amp; Plan</div>
+  <h2>Earn the right to build it</h2>
+
+  <p class="lede">
+    This is a concept, not a company with traction. The plan is therefore designed to spend as little as
+    possible before knowing whether the core claim — that systematic follow-up materially lifts conversion
+    for this customer — is actually true.
+  </p>
+
+  <table>
+    <thead><tr><th style="width:34mm">Stage</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1 · Interviews</strong></td><td>30+ contractors across two verticals. Behavioural questions only — <em>show me your oldest open quote</em>, not <em>would you find this useful</em>.</td></tr>
+      <tr><td><strong>2 · Concierge</strong></td><td>Deliver the outcome manually for 3–5 paying customers. Import quotes, build campaigns, produce daily call lists, report recovered revenue. This is where the product design is actually discovered.</td></tr>
+      <tr><td><strong>3 · Narrow pilot</strong></td><td>Build only the workflows that repeated in the concierge stage. Nothing else.</td></tr>
+      <tr><td><strong>4 · Paid beta</strong></td><td>Convert to subscription. Praise without payment is not validation.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>First 90 days</h3>
+  <div class="cols">
+    <div>
+      <p class="kicker">Days 1–15 · Select</p>
+      <p style="font-size:9.5pt">Two candidate verticals, 15 interviews each, document workflows and software in use, identify the most valuable single leak.</p>
+      <p class="kicker" style="margin-top:5mm">Days 16–30 · Diagnose</p>
+      <p style="font-size:9.5pt">Build the audit template. Run five real audits. Present findings and ask for payment to implement the recovery.</p>
+    </div>
+    <div>
+      <p class="kicker">Days 31–60 · Deliver manually</p>
+      <p style="font-size:9.5pt">Operate follow-up campaigns by hand with approval. Track outcomes. Measure revenue influenced and time saved.</p>
+      <p class="kicker" style="margin-top:5mm">Days 61–90 · Productise</p>
+      <p style="font-size:9.5pt">Pick the highest-value repeated workflow, lock the first integration, build the narrow beta, convert pilots to subscription, publish the first case study.</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h4>Proceed only when</h4>
+    <ul class="tight plain" style="margin-bottom:0">
+      <li>Customers grant real data access without being persuaded</li>
+      <li>Several pay at the intended price point</li>
+      <li>The system produces measurable, attributable outcomes</li>
+      <li>Users continue the workflow after the novelty ends</li>
+      <li>Onboarding repeats without founder heroics</li>
+      <li>One vertical shows genuinely repeatable language and needs</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 9. RISKS ============ -->
+<section>
+  <div class="sec-num">09 — Risks</div>
+  <h2>The four that could actually kill this</h2>
+
+  <p class="lede">
+    Stated plainly, because a pitch that hides them is less credible than one that does not.
+  </p>
+
+  <div class="risk">
+    <p class="r-t">1. The incumbents simply build it</p>
+    <p>ServiceM8, simPRO, Jobber and AroFlo already hold the data and the customer relationship. Any of them could ship AI follow-up.</p>
+    <p class="ans">This is the real risk, and it cannot be eliminated — only outrun and out-positioned. Our advantages are focus, speed, and being <em>cross-platform</em>: a contractor's data lives in a job system, an accounting system, an inbox and a calendar, and no single vendor is motivated to unify them. We are also building one thing while they maintain thirty. If the category proves out, acquisition by one of them is a legitimate outcome rather than a failure.</p>
+  </div>
+
+  <div class="risk">
+    <p class="r-t">2. Automation damages a customer relationship</p>
+    <p>We are sending messages in the contractor's name to their customers. One badly timed message costs more trust than ten recovered quotes earn.</p>
+    <p class="ans">Approval-first defaults, pause-on-reply, frequency caps, account exclusions, sensitive-issue detection and a full audit trail. Autonomy is a level the customer unlocks, never the default state.</p>
+  </div>
+
+  <div class="risk">
+    <p class="r-t">3. Retention collapses after the backlog is cleared</p>
+    <p>The first ninety days recover a pile of neglected quotes. That is a one-off. If nothing recurring replaces it, the customer churns at month four having received exactly the value they paid for.</p>
+    <p class="ans">This is why reactivation and capacity intelligence are in the product rather than the roadmap. Recovery wins the account; recurring service cycles and the empty-calendar problem are what make it a permanent system. Whether that holds is one of the questions the pilots must answer honestly.</p>
+  </div>
+
+  <div class="risk">
+    <p class="r-t">4. The product sprawls</p>
+    <p>CRM, job management, marketing, AI calling, tenders, marketplace. Every one is a plausible adjacency and collectively they are fatal.</p>
+    <p class="ans">The wedge is enforced structurally: no expansion without measurable evidence from the current stage. Tender intelligence in particular is explicitly a later module in a market that already has dedicated competitors.</p>
+  </div>
+
+  <h3>The moat, honestly assessed</h3>
+  <p>
+    It is not "we use AI" — that will be commodity within two years. Defensibility, if it comes, comes from
+    accumulation: deep trade-system integrations, proprietary structured revenue data, trade-specific
+    playbooks, per-customer performance learning, the capacity-to-demand engine, credible outcome
+    attribution, and eventually anonymised cross-cohort benchmarks that no single contractor could ever
+    generate alone. All of that compounds with usage. None of it exists on day one.
+  </p>
+</section>
+
+<!-- ============ 10. CLOSE ============ -->
+<section>
+  <div class="sec-num">10 — The Case</div>
+  <h2>Why this, why now, why us</h2>
+
+  <div class="cols" style="margin-bottom:6mm">
+    <div>
+      <h4>Why this</h4>
+      <p style="font-size:9.5pt">Every trade software category was built for the operational half of the business. The commercial half is unserved, measurable, and worth more per customer.</p>
+    </div>
+    <div>
+      <h4>Why now</h4>
+      <p style="font-size:9.5pt">Job data is finally digital and API-accessible, and AI has made trade-specific qualification, drafting and prioritisation cheap enough to productise for a $499 subscription.</p>
+    </div>
+    <div>
+      <h4>Why us</h4>
+      <p style="font-size:9.5pt">The founder has run a service company and built operational SaaS for one — direct knowledge of the gap between how software is designed and how frontline businesses actually behave.</p>
+    </div>
+  </div>
+
+  <blockquote>
+    We built this because we know what it is like to run a service business while trying to quote, follow
+    up, schedule staff and keep work coming in. Most software starts after a job is won. We built the
+    system we wanted before that point.
+  </blockquote>
+
+  <h3>What the first product recovers</h3>
+  <p>
+    Nothing speculative. Open quotes. Unanswered enquiries. Previous customers. Deferred work. Recurring
+    service cycles. Future crew capacity. All of it already sits inside the business, already paid for,
+    currently leaking — which is precisely why the value can be proven rather than promised.
+  </p>
+
+  <div class="closing avoid-break">
+    <p class="big-line">
+      The product wins when a contractor no longer depends on memory, spare time or late-night
+      administration to <em>keep the pipeline moving.</em>
+    </p>
+    <p style="margin-bottom:0;font-size:10pt">
+      The immediate ask is not capital. It is 30 contractor interviews, 5 revenue leak audits and 3 paid
+      concierge customers in a single vertical — the cheapest possible test of whether disciplined follow-up
+      moves conversion enough to build a company around. Ninety days to an answer.
+    </p>
+  </div>
+
+  <p class="footnote" style="margin-top:6mm">
+    Prepared from the Tradie AI Growth Platform business blueprint, v1.0 (19 July 2026). All financial
+    figures in this document are illustrative models derived from stated assumptions, not observed results.
+    The company is pre-revenue and pre-product. Market context draws on Australian Bureau of Statistics
+    construction data and Master Builders Australia quarterly industry reporting, which should be
+    re-verified during formal market research. Nothing here constitutes legal, financial or investment advice.
+  </p>
+</section>
+
+</body>
+</html>
