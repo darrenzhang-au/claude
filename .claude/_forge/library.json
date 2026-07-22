@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-07-03T09:26:24.464935+00:00",
+  "generatedAt": "2026-07-04T05:56:07.338038+00:00",
   "skillsDir": "C:\\Users\\darre\\Documents\\repos\\claude\\.claude\\skills",
-  "count": 19,
+  "count": 20,
   "unversioned": [
     "excalidraw-diagram-generator",
     "expand-and-contract",
@@ -179,6 +179,20 @@
       "has_references": false,
       "looks_like_pipeline": true,
       "integration_excerpt": "- Reads: `draft/SKILL.md` (+ assets + `references/examples/`), `forge.json`, `novelty.md`, the library\n  model (`.claude/_forge/library.json`), and (revise) the prior version snapshot in `versions/<oldver>/`.\n- Writes: `.claude/_forge/<slug>/verify.md`; updates `forge.json` with the verdict + `findings.arena`,\n  `findings.goldenExamples`.\n- Next: back to `skill-forge` \u2192 the install gate (promote `draft/` \u2192 `.claude/skills/<slug>/` on approval),\n  then a short introduction of the new skill (triggers + 2-3 first prompts to try)."
+    },
+    {
+      "slug": "image-adventure",
+      "name": "image-adventure",
+      "description": "Turn the user's own photos and videos into a playable adventure game run right in the chat \u2014 Claude reads the images as evidence (scene, objects, people, mood, implied events) and game-masters an interactive story grounded in what's actually visible, where every additional image deepens the world instead of resetting it (1 photo = a vignette; 2-4 = a connected world; 5+ = subplots and factions; a whole album = an epic that unlocks region by region as you play). Handles anything from one picture to an entire directory of 500+ photos/videos (\"turn my photo album into a game\", \"make something from D:\\Photos\", \"build an adventure from my camera roll\"). Also trigger on \"turn these photos into an adventure game\", \"make an adventure game from these images\", \"build a game around what's happening in this picture\", \"create a text adventure from my vacation photos\", \"add this image to the game\" (mid-play), or \"continue my image adventure\" (resume from the save file). Do NOT use for plain image description/captioning/analysis, writing a non-interactive story from photos, generating images, building a coded/HTML game, or editing videos into clips/reels (use raw-to-reel) \u2014 this skill consumes media and plays in chat only.",
+      "version": "1.1.0",
+      "category": null,
+      "handoffs_to": [],
+      "expects_from": [],
+      "is_forge_internal": false,
+      "has_scripts": false,
+      "has_references": true,
+      "looks_like_pipeline": true,
+      "integration_excerpt": ""
     },
     {
       "slug": "infographic-builder",
